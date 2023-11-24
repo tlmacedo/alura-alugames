@@ -1,5 +1,4 @@
 import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -26,7 +25,7 @@ fun main() {
 
     val gson = Gson()
 
-    try {
+    val resultado = runCatching {
         val meuInfoJogo = gson.fromJson(
             json, InfoJogo::class.java
         )
@@ -36,12 +35,22 @@ fun main() {
             meuInfoJogo.info.thumb
         )
         println(meuJogo)
-    } catch (ex: Exception) {
-        when (ex) {
-            is JsonSyntaxException,
-            is NullPointerException -> println("Jogo inexistente. Tente outro id.")
-        }
     }
 
+    resultado.onFailure {
+        println("Jogo inexistente. Tente outro id.")
+    }
+
+    resultado.onSuccess {
+        print("\nDeseja inserir uma descrição personalizada? S/N")
+        val opcao = leitura.nextLine()
+        if (opcao.equals("s", true)) {
+            print("Insira a descrição personalizada para o jogo: ")
+            val descricao = leitura.nextLine()
+            //meuJogo.descricao
+        } else {
+
+        }
+    }
 
 }
