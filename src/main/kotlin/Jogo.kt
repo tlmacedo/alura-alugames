@@ -7,8 +7,8 @@ data class Jogo(
         return "Meu Jogo:\nTitulo: $titulo\ncapa: $capa${getMdescricao()}"
     }
 
-    fun getMdescricao(): String {
-        if (descricao.isNullOrEmpty()) return ""
+    fun getMdescricao(): String? {
+        if (descricao.isNullOrEmpty()) return null
         return "\nDescrição: $descricao"
     }
 }
