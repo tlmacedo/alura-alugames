@@ -1,9 +1,10 @@
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
-import java.net.http.HttpResponse
-import java.util.Scanner
+import java.net.http.HttpResponse.BodyHandlers
+import java.util.*
 
 fun main() {
 
@@ -18,21 +19,29 @@ fun main() {
     val request = HttpRequest.newBuilder()
         .uri(URI.create(urlGame))
         .build()
-    val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+    val response = client.send(request, BodyHandlers.ofString())
 
     val json = response.body()
-    println("Retorno Site:\n$json")
+    println(json)
 
     val gson = Gson()
-    val meuInfoJogo = gson.fromJson(
-        json, InfoJogo::class.java
-    )
 
-    val meuJogo = Jogo(
-        meuInfoJogo.info.title,
-        meuInfoJogo.info.thumb
-    )
+    try {
+        val meuInfoJogo = gson.fromJson(
+            json, InfoJogo::class.java
+        )
 
-    println(meuJogo)
+        val meuJogo = Jogo(
+            meuInfoJogo.info.title,
+            meuInfoJogo.info.thumb
+        )
+        println(meuJogo)
+    } catch (ex: Exception) {
+        when (ex) {
+            is JsonSyntaxException,
+            is NullPointerException -> println("Jogo inexistente. Tente outro id.")
+        }
+    }
+
 
 }
