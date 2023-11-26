@@ -6,7 +6,7 @@ data class Jogo(
     var descricao: String? = null
 ) {
     override fun toString(): String {
-        return "Meu br.com.alura.alugames.modelo.Jogo:\nTitulo: $titulo\ncapa: $capa${getMdescricao()}"
+        return "MeuJogo:\nTitulo: $titulo\ncapa: $capa${getMdescricao()}"
     }
 
     fun getMdescricao(): String? {

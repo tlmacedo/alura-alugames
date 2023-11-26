@@ -32,14 +32,12 @@ fun main() {
     }
 
     resultado.onSuccess {
-        print("\nDeseja inserir uma descrição personalizada? S/N: ")
-        val opcao = leitura.nextLine()
-        if (opcao.equals("s", true)) {
-            print("Insira a descrição personalizada para o jogo: ")
-            val descricaoPersonalizada = leitura.nextLine()
-            meuJogo!!.descricao = descricaoPersonalizada
-        } else {
+        print("\nSe desejar inserir uma descrição personalizada: ")
+        val mDescricaoPersonalizada = leitura.nextLine()
+        if (mDescricaoPersonalizada.equals("", true)) {
             meuJogo!!.descricao = meuJogo!!.titulo
+        } else {
+            meuJogo!!.descricao = mDescricaoPersonalizada
         }
         println(meuJogo)
     }
