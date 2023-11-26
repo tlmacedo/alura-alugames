@@ -16,6 +16,7 @@ data class Gamer(
     var idInterno: String? = null
         private set
 
+    val jogosBuscados = mutableListOf<Jogo>()
 
     constructor(
         nome: String,

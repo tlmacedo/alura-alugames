@@ -7,43 +7,49 @@ import java.util.*
 fun main() {
 
     val leitura = Scanner(System.`in`)
-    print("Digite um código de jogo para buscar: ")
 
-    val busca = leitura.nextLine()
+    do {
 
-    val buscaApi = ConsumoApi()
-    val informacaoJogo = buscaApi.buscarJogo(busca)
+        print("Digite um código de jogo para buscar: ")
 
-    var meuJogo: Jogo? = null
+        val busca = leitura.nextLine()
 
-    val resultado = runCatching {
+        val buscaApi = ConsumoApi()
+        val informacaoJogo = buscaApi.buscarJogo(busca)
 
-        if (informacaoJogo != null) {
-            meuJogo = Jogo(
-                informacaoJogo.info.title,
-                informacaoJogo.info.thumb
-            )
+        var meuJogo: Jogo? = null
+
+        val resultado = runCatching {
+
+            if (informacaoJogo != null) {
+                meuJogo = Jogo(
+                    informacaoJogo.info.title,
+                    informacaoJogo.info.thumb
+                )
+            }
+            println("Titulo:${meuJogo!!.titulo}")
         }
-        println("Titulo:${meuJogo!!.titulo}")
-    }
 
-    resultado.onFailure {
-        println("Jogo inexistente. Tente outro id.")
-    }
-
-    resultado.onSuccess {
-        print("\nSe desejar inserir uma descrição personalizada: ")
-        val mDescricaoPersonalizada = leitura.nextLine()
-        if (mDescricaoPersonalizada.equals("", true)) {
-            meuJogo!!.descricao = meuJogo!!.titulo
-        } else {
-            meuJogo!!.descricao = mDescricaoPersonalizada
+        resultado.onFailure {
+            println("Jogo inexistente. Tente outro id.")
         }
-        println(meuJogo)
-    }
 
-    resultado.onSuccess {
-        println("\n\nBusca finalizada com sucesso!")
-    }
+        resultado.onSuccess {
+            print("\nSe desejar inserir uma descrição personalizada: ")
+            val mDescricaoPersonalizada = leitura.nextLine()
+            if (mDescricaoPersonalizada.equals("", true)) {
+                meuJogo!!.descricao = meuJogo!!.titulo
+            } else {
+                meuJogo!!.descricao = mDescricaoPersonalizada
+            }
+            println(meuJogo)
+        }
+
+        print("Deseja buscar um novo jogo? S/N: ")
+        val resposta = leitura.nextLine()
+
+    } while (resposta.equals("s", true))
+
+    println("\n\nBusca finalizada com sucesso!")
 
 }
