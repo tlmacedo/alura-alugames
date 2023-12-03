@@ -1,6 +1,6 @@
 package br.com.alura.alugames.modelo
 
-import java.util.Scanner
+import java.util.*
 import kotlin.random.Random
 
 data class Gamer(
@@ -31,48 +31,95 @@ data class Gamer(
     }
 
     init {
-        if (nome.isBlank())
-            throw IllegalAccessException("Nome está em branco.")
-        this.email = validarEmail()
+
+        //this.email = validarEmail()
     }
 
     override fun toString(): String {
         return "Gamer(nome='$nome', email='$email', dataNascimento=$dataNascimento, usuario=$usuario, idInterno=$idInterno)"
     }
 
-    fun criarIdInterno() {
-        val numero = Random.nextInt(10000)
-        val tag = String.format("%04d", numero)
+    private fun criarIdInterno() {
+        val number = Random.nextInt(10000)
+        val tag = String.format("%04d", number)
 
         this.idInterno = "${usuario}#$tag"
 
     }
 
-    fun validarEmail(): String {
-        val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
-        if (regex.matches(email))
-            return email
-        throw IllegalAccessException("Email inválido!")
-    }
 
     companion object {
+        var name: String? = null
+        var email: String? = null
+        var leituraGamer = Scanner(System.`in`)
         fun criarGamer(leitura: Scanner): Gamer {
-            print("*******************************************************\n*             Boas Vindas ao AluGames                 *\n*******************************************************\nVamos fazer seu cadastro.\nDigite seu nome: ")
-            val nome = leitura.nextLine()
-            print("Digite seu e-mail: ")
-            val email = leitura.nextLine()
+            this.leituraGamer = leitura
+            print(
+                "*******************************************************\n" +
+                        "*             Boas Vindas ao AluGames                 *\n" +
+                        "*******************************************************\n" +
+                        "Vamos fazer seu cadastro?\n"
+            )
+
+            getNameNewUser()
+            getEmailNewUser()
+
             print("Deseja completar seu cadastro com usuário e data de nascimento? (S/N): ")
-            val opcao = leitura.nextLine()
+            val opcao = leituraGamer.nextLine()
 
             return if (opcao.equals("s", true)) {
                 print("Digite sua data de nascimento(DD/MM/AAAA): ")
-                val nascimento = leitura.nextLine()
+                val nascimento = leituraGamer.nextLine()
                 print("Digite seu nome de usuário: ")
-                val usuario = leitura.nextLine()
+                val usuario = leituraGamer.nextLine()
 
-                Gamer(nome, email, nascimento, usuario)
+                Gamer(name!!, email!!, nascimento, usuario)
             } else
-                Gamer(nome, email)
+                Gamer(name!!, email!!)
+        }
+
+        private fun validEmail(): Boolean {
+            // Retornar true se o email for válido.
+            val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
+            return regex.matches(email!!)
+        }
+
+        private fun validName(): Boolean {
+            return (!(name.isNullOrBlank() || name!!.replace(
+                "[!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~]".toRegex(),
+                ""
+            ).length < 3))
+        }
+
+        private fun getNameNewUser() {
+            print("Primeiro informe seu nome: ")
+            var isName: Boolean? = null
+            do {
+                if (isName == false)
+                    print("nome está em branco, por favor informe seu nome: ")
+                name = leituraGamer.nextLine()
+                isName = validName()
+            } while (!isName!!)
+        }
+
+        private fun getEmailNewUser() {
+            var isEmail: Boolean? = null
+            print("" +
+                    "${
+                        name!!.replaceFirstChar {
+                            if (it.isLowerCase())
+                                it.titlecase(Locale.getDefault())
+                            else
+                                it.toString()
+                        }
+                    } informe seu e-mail: ")
+            do {
+                if (isEmail == false) {
+                    print("$name o e-mail: \"$email\" é inválido!\ninforme um e-mail válido: ")
+                }
+                email = leituraGamer.nextLine()
+                isEmail = validEmail()
+            } while (!isEmail!!)
         }
     }
 
