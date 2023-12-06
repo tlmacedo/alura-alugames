@@ -87,7 +87,7 @@ data class Gamer(
             return true
         }
 
-        fun imprimirCabecalho(titulo: String = "AluGames") {
+        private fun imprimirCabecalho(titulo: String = "AluGames") {
             print(
                 "*******************************************************\n" +
                         "*             Boas Vindas ao $titulo                 *\n" +
@@ -96,7 +96,7 @@ data class Gamer(
             )
         }
 
-        fun getNameNewUser() {
+        private fun getNameNewUser() {
             print("Primeiro informe seu nome: ")
             var isName: Boolean? = null
             do {
