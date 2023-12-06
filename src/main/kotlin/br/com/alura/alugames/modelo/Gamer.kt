@@ -30,11 +30,6 @@ data class Gamer(
         criarIdInterno()
     }
 
-    init {
-
-        //this.email = validarEmail()
-    }
-
     override fun toString(): String {
         return "Gamer(nome='$nome', email='$email', dataNascimento=$dataNascimento, usuario=$usuario, idInterno=$idInterno)"
     }
@@ -54,13 +49,8 @@ data class Gamer(
         var leituraGamer = Scanner(System.`in`)
         fun criarGamer(leitura: Scanner): Gamer {
             this.leituraGamer = leitura
-            print(
-                "*******************************************************\n" +
-                        "*             Boas Vindas ao AluGames                 *\n" +
-                        "*******************************************************\n" +
-                        "Vamos fazer seu cadastro?\n"
-            )
 
+            imprimirCabecalho()
             getNameNewUser()
             getEmailNewUser()
 
@@ -84,14 +74,29 @@ data class Gamer(
             return regex.matches(email!!)
         }
 
-        private fun validName(): Boolean {
-            return (!(name.isNullOrBlank() || name!!.replace(
-                "[!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~]".toRegex(),
-                ""
-            ).length < 3))
+        internal fun validName(): Boolean {
+
+            if (name.isNullOrBlank() || name!!.replace(
+                    "[0-9!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~]".toRegex(),
+                    ""
+                ).length < 3
+            )
+
+                return false
+            name = name!!.split(" ").joinToString(" ") { it.replaceFirstChar(Char::uppercaseChar) }
+            return true
         }
 
-        private fun getNameNewUser() {
+        fun imprimirCabecalho(titulo: String = "AluGames") {
+            print(
+                "*******************************************************\n" +
+                        "*             Boas Vindas ao $titulo                 *\n" +
+                        "*******************************************************\n" +
+                        "Vamos fazer seu cadastro?\n"
+            )
+        }
+
+        fun getNameNewUser() {
             print("Primeiro informe seu nome: ")
             var isName: Boolean? = null
             do {
@@ -104,15 +109,7 @@ data class Gamer(
 
         private fun getEmailNewUser() {
             var isEmail: Boolean? = null
-            print("" +
-                    "${
-                        name!!.replaceFirstChar {
-                            if (it.isLowerCase())
-                                it.titlecase(Locale.getDefault())
-                            else
-                                it.toString()
-                        }
-                    } informe seu e-mail: ")
+            print("$name informe seu e-mail: ")
             do {
                 if (isEmail == false) {
                     print("$name o e-mail: \"$email\" é inválido!\ninforme um e-mail válido: ")
