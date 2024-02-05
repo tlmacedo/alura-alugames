@@ -15,7 +15,7 @@ class ConsumoApi {
     fun buscarJogo(id: String): InfoJogo? {
         val urlGame = "https://www.cheapshark.com/api/1.0/games?id=$id"
 
-        val json = buscarUrl(urlGame)
+        val json = consomeDados(urlGame)
         val gson = Gson()
 
         return gson.fromJson(json, InfoJogo::class.java)
@@ -24,7 +24,7 @@ class ConsumoApi {
     fun buscarGamers(): List<Gamer> {
         val urlGame = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
 
-        val json = buscarUrl(urlGame)
+        val json = consomeDados(urlGame)
         val gson = Gson()
 
         val meuGamerTipo = object : TypeToken<List<InfoGamerJson>>() {}.type
@@ -37,7 +37,7 @@ class ConsumoApi {
         return listaGamerConvertida
     }
 
-    private fun buscarUrl(url: String): String? {
+    private fun consomeDados(url: String): String? {
         val client = HttpClient.newHttpClient()
         val request = HttpRequest.newBuilder()
             .uri(URI.create(url))
@@ -46,7 +46,6 @@ class ConsumoApi {
             .send(request, HttpResponse.BodyHandlers.ofString())
         if (response.statusCode() != 200) return null
 
-        val json = response.body()
-        return json
+        return response.body()
     }
 }
