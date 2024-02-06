@@ -42,6 +42,10 @@ data class Gamer(
 
     }
 
+    fun alugaJogo(jogo: Jogo): Aluguel {
+        return Aluguel(this, jogo)
+    }
+
 
     companion object {
         var name: String? = null
