@@ -27,12 +27,11 @@ fun main() {
 
 		val resultado = runCatching {
 
-			if (informacaoJogo != null) {
-				meuJogo = Jogo(
-					informacaoJogo.info.title,
-					informacaoJogo.info.thumb
-				)
-			}
+			meuJogo = Jogo(
+				informacaoJogo.info.title,
+				informacaoJogo.info.thumb,
+				informacaoJogo.info.price
+			)
 			println("Titulo:${meuJogo!!.titulo}")
 		}
 
