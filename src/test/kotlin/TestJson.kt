@@ -1,3 +1,4 @@
+import br.com.alura.alugames.modelo.Periodo
 import br.com.alura.alugames.servicos.ConsumoApi
 import java.time.LocalDate
 
@@ -15,6 +16,8 @@ fun main() {
     println(gamer1)
     println(jogo1)
 
-    val aluguel = gamer1.alugaJogo(jogo1, LocalDate.now(), LocalDate.now().plusDays(3))
+    val periodo = Periodo(LocalDate.now(), LocalDate.now().plusDays(5))
+
+    val aluguel = gamer1.alugaJogo(jogo1, periodo)
     println("${aluguel}")
 }

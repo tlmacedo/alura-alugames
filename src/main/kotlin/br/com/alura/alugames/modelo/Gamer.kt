@@ -1,6 +1,5 @@
 package br.com.alura.alugames.modelo
 
-import java.time.LocalDate
 import java.util.*
 import kotlin.random.Random
 
@@ -43,8 +42,8 @@ data class Gamer(
 
     }
 
-    fun alugaJogo(jogo: Jogo, dataInicial: LocalDate, dataFinal: LocalDate): Aluguel {
-        return Aluguel(this, jogo, dataInicial, dataFinal)
+    fun alugaJogo(jogo: Jogo, periodo: Periodo): Aluguel {
+        return Aluguel(this, jogo, periodo)
     }
 
 
