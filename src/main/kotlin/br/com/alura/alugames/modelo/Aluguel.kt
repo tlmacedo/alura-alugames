@@ -8,8 +8,12 @@ data class Aluguel(
     val jogo: Jogo,
     val periodo: Periodo
 ) {
-    val valorDoAluguel = jogo.preco * periodo.emDias
+    val valorDoAluguel = gamer.plano.obterValor(this)
     override fun toString(): String {
-        return "${gamer.nome} alugou: ${jogo.titulo} por ${periodo.emDias} dias na diária de R$${jogo.preco} total de R$${valorDoAluguel.toBigDecimal(MathContext(4,RoundingMode.UP))}"
+        return "${gamer.nome} alugou: ${jogo.titulo} por ${periodo.emDias} dias na diária de R$${jogo.preco} total de R$${
+            valorDoAluguel.toBigDecimal(
+                MathContext(4, RoundingMode.UP)
+            )
+        }"
     }
 }
