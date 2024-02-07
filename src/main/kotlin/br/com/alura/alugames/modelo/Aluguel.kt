@@ -10,6 +10,6 @@ data class Aluguel(
 ) {
     val valorDoAluguel = jogo.preco * periodo.emDias
     override fun toString(): String {
-        return "Aluguel do ${jogo.titulo} por ${gamer.nome} pelo valor R$${valorDoAluguel.toBigDecimal(MathContext(5,RoundingMode.UP))}"
+        return "${gamer.nome} alugou: ${jogo.titulo} por ${periodo.emDias} dias na diária de R$${jogo.preco} total de R$${valorDoAluguel.toBigDecimal(MathContext(4,RoundingMode.UP))}"
     }
 }

@@ -18,6 +18,7 @@ data class Gamer(
                 criarIdInterno()
         }
     val jogosBuscados = mutableListOf<Jogo>()
+    val jogosAlugados = mutableListOf<Aluguel>()
 
     constructor(
         nome: String,
@@ -43,7 +44,9 @@ data class Gamer(
     }
 
     fun alugaJogo(jogo: Jogo, periodo: Periodo): Aluguel {
-        return Aluguel(this, jogo, periodo)
+        val aluguel = Aluguel(this, jogo, periodo)
+        jogosAlugados.add(aluguel)
+        return aluguel
     }
 
 

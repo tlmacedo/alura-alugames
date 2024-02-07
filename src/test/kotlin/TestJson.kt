@@ -1,5 +1,7 @@
 import br.com.alura.alugames.modelo.Periodo
 import br.com.alura.alugames.servicos.ConsumoApi
+import java.math.MathContext
+import java.math.RoundingMode
 import java.time.LocalDate
 
 fun main() {
@@ -10,14 +12,27 @@ fun main() {
 //    println(listaGamers)
 //    println(listaJogoJson)
 
-    val gamer1 = listaGamers[2]
-    val jogo1 = listaJogoJson[2]
+    val gamer1 = listaGamers[3]
+    val jogo1 = listaJogoJson[10]
+    val jogo2 = listaJogoJson[13]
+    val jogo3 = listaJogoJson[2]
 
     println(gamer1)
     println(jogo1)
+    println(jogo2)
+    println(jogo3)
 
-    val periodo = Periodo(LocalDate.now(), LocalDate.now().plusDays(5))
+    val periodo1 = Periodo(LocalDate.now(), LocalDate.now().plusDays(7))
+    val periodo2 = Periodo(LocalDate.now(), LocalDate.now().plusDays(3))
+    val periodo3 = Periodo(LocalDate.now(), LocalDate.now().plusDays(10))
 
-    val aluguel = gamer1.alugaJogo(jogo1, periodo)
-    println("${aluguel}")
+    gamer1.alugaJogo(jogo1, periodo1)
+    gamer1.alugaJogo(jogo2, periodo2)
+    gamer1.alugaJogo(jogo3, periodo3)
+    gamer1.jogosAlugados.map {
+        println(it)
+    }
+    println("Total do aluguel foi de R$${gamer1.jogosAlugados.sumOf { aluguel -> aluguel.valorDoAluguel.toBigDecimal(
+        MathContext(4, RoundingMode.UP)
+    ) }}")
 }
