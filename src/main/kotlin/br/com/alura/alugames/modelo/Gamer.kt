@@ -17,7 +17,7 @@ data class Gamer(
             if (idInterno.isNullOrBlank())
                 criarIdInterno()
         }
-    var plano: PlanoAvulso = PlanoAvulso("BRONZE")
+    var plano: Plano = PlanoAvulso("BRONZE")
     val jogosBuscados = mutableListOf<Jogo>()
     val jogosAlugados = mutableListOf<Aluguel>()
 

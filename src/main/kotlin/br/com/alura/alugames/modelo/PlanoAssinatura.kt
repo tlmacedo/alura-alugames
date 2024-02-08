@@ -5,5 +5,8 @@ class PlanoAssinatura(
     val mensalidade: Double,
     val jogosIncluidos: Int
 ) : Plano(tipo) {
+    override fun obterValor(aluguel: Aluguel): Double {
 
+        return super.obterValor(aluguel)
+    }
 }
