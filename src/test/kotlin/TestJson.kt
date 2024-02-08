@@ -17,6 +17,7 @@ fun main() {
     val jogo1 = listaJogoJson[10]
     val jogo2 = listaJogoJson[13]
     val jogo3 = listaJogoJson[2]
+    val jogo4 = listaJogoJson[11]
 
 //    println(gamer1)
 //    println(jogo1)
@@ -46,6 +47,7 @@ fun main() {
     gamer2.alugaJogo(jogo1,periodo1)
     gamer2.alugaJogo(jogo2,periodo2)
     gamer2.alugaJogo(jogo3,periodo3)
+    gamer2.alugaJogo(jogo4,periodo3)
     println(gamer2.jogosAlugados)
     println(
         "Total do aluguel foi de R$${
