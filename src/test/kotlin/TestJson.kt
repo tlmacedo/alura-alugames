@@ -58,4 +58,9 @@ fun main() {
             }
         }"
     )
+
+    gamer2.recomendar(7)
+    gamer2.recomendar(10)
+    gamer2.recomendar(8)
+    println(gamer2)
 }
