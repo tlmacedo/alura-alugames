@@ -34,7 +34,7 @@ data class Gamer(
         }
     }
 
-    fun recomendarJorgo(jogo: Jogo, nota: Int) {
+    fun recomendarJogo(jogo: Jogo, nota: Int) {
         jogo.recomendar(nota)
         jogosRecomendados.add(jogo)
     }
