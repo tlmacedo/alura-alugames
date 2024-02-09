@@ -1,5 +1,4 @@
 import br.com.alura.alugames.modelo.Periodo
-import br.com.alura.alugames.modelo.PlanoAssinatura
 import br.com.alura.alugames.servicos.ConsumoApi
 import java.math.MathContext
 import java.math.RoundingMode
@@ -43,7 +42,7 @@ fun main() {
     )
 
     val gamer2 = listaGamers[5]
-    gamer2.plano = PlanoAssinatura("PRATA", 9.90, 3)
+//    gamer2.plano = PlanoAssinatura("PRATA", 9.90, 3)
     gamer2.alugaJogo(jogo1,periodo1)
     gamer2.alugaJogo(jogo2,periodo2)
     gamer2.alugaJogo(jogo3,periodo3)
@@ -63,4 +62,7 @@ fun main() {
     gamer2.recomendar(10)
     gamer2.recomendar(8)
     println(gamer2)
+
+    gamer2.alugaJogo(jogo1, periodo1)
+    println(gamer2.jogosAlugados)
 }
