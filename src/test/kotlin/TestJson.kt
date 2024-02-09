@@ -1,6 +1,8 @@
 import br.com.alura.alugames.modelo.Periodo
 import br.com.alura.alugames.modelo.PlanoAssinatura
 import br.com.alura.alugames.servicos.ConsumoApi
+import com.google.gson.GsonBuilder
+import java.io.File
 import java.time.LocalDate
 
 fun main() {
@@ -96,5 +98,13 @@ fun main() {
 
     println(gamerCamila.jogosRecomendados)
     println(gamerCaroline.jogosRecomendados)
+
+    val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+    val serializacao = gson.toJson(gamerCamila.jogosRecomendados)
+    println(serializacao)
+
+    val arquivo = File("jogosRecomendados.json")
+    arquivo.writeText(serializacao)
+    println(arquivo.absolutePath)
 
 }
