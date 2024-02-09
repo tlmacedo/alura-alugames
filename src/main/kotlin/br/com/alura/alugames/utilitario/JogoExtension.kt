@@ -1,5 +1,8 @@
 import br.com.alura.alugames.modelo.Jogo
 
 fun Jogo.criarJogo(): Jogo {
-    return Jogo(this.titulo, this.capa, this.preco, this.descricao)
+    val jogo = Jogo(this.titulo, this.capa)
+    jogo.preco = this.preco
+    jogo.descricao = this.descricao
+    return jogo
 }

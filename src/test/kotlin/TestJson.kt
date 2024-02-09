@@ -1,8 +1,6 @@
 import br.com.alura.alugames.modelo.Periodo
 import br.com.alura.alugames.modelo.PlanoAssinatura
 import br.com.alura.alugames.servicos.ConsumoApi
-import java.math.MathContext
-import java.math.RoundingMode
 import java.time.LocalDate
 
 fun main() {
@@ -31,16 +29,16 @@ fun main() {
     gamer1.alugaJogo(jogo1, periodo1)
     gamer1.alugaJogo(jogo2, periodo2)
     gamer1.alugaJogo(jogo3, periodo3)
-    println(gamer1.jogosAlugados)
-    println(
-        "Total do aluguel foi de R$${
-            gamer1.jogosAlugados.sumOf { aluguel ->
-                aluguel.valorDoAluguel.toBigDecimal(
-                    MathContext(4, RoundingMode.UP)
-                )
-            }
-        }"
-    )
+//    println(gamer1.jogosAlugados)
+//    println(
+//        "Total do aluguel foi de R$${
+//            gamer1.jogosAlugados.sumOf { aluguel ->
+//                aluguel.valorDoAluguel.toBigDecimal(
+//                    MathContext(4, RoundingMode.UP)
+//                )
+//            }
+//        }"
+//    )
 
     val gamer2 = listaGamers[5]
     gamer2.plano = PlanoAssinatura("PRATA", 9.90, 3, 0.15)
@@ -48,22 +46,31 @@ fun main() {
     gamer2.alugaJogo(jogo2, periodo2)
     gamer2.alugaJogo(jogo3, periodo3)
     gamer2.alugaJogo(jogo4, periodo3)
-    println(gamer2.jogosAlugados)
-    println(
-        "Total do aluguel foi de R$${
-            gamer2.jogosAlugados.sumOf { aluguel ->
-                aluguel.valorDoAluguel.toBigDecimal(
-                    MathContext(4, RoundingMode.UP)
-                )
-            }
-        }"
-    )
+//    println(gamer2.jogosAlugados)
+//    println(
+//        "Total do aluguel foi de R$${
+//            gamer2.jogosAlugados.sumOf { aluguel ->
+//                aluguel.valorDoAluguel.toBigDecimal(
+//                    MathContext(4, RoundingMode.UP)
+//                )
+//            }
+//        }"
+//    )
 
     gamer2.recomendar(7)
     gamer2.recomendar(10)
     gamer2.recomendar(8)
-    println(gamer2)
+//    println(gamer2)
 
     gamer2.alugaJogo(jogo1, periodo1)
-    println(gamer2.jogosAlugados)
+//    println(gamer2.jogosAlugados)
+
+    gamer2.recomendarJorgo(jogo1, 7)
+    gamer2.recomendarJorgo(jogo3, 10)
+
+    gamer1.recomendarJorgo(jogo1, 8)
+    gamer1.recomendarJorgo(jogo3, 9)
+
+    println(gamer2.jogosRecomendados)
+    println(gamer1.jogosRecomendados)
 }

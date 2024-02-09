@@ -29,8 +29,7 @@ fun main() {
 
 			meuJogo = Jogo(
 				informacaoJogo.info.title,
-				informacaoJogo.info.thumb,
-				informacaoJogo.info.price
+				informacaoJogo.info.thumb
 			)
 			println("Titulo:${meuJogo!!.titulo}")
 		}
