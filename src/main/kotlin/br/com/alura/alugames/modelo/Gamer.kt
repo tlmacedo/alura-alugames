@@ -1,5 +1,6 @@
 package br.com.alura.alugames.modelo
 
+import java.math.BigDecimal
 import java.util.*
 import kotlin.random.Random
 
@@ -21,10 +22,16 @@ data class Gamer(
     val jogosBuscados = mutableListOf<Jogo>()
     val jogosAlugados = mutableListOf<Aluguel>()
     private val listaNotas = mutableListOf<Int>()
-    val jogosRecomendados = mutableListOf<Jogo>()
+    override val media: BigDecimal
+        get() {
+            try {
+                return listaNotas.average().toBigDecimal()
+            } catch (ex: NumberFormatException) {
+                return BigDecimal("0.0")
+            }
+        }
 
-    override val media: Double
-        get() = listaNotas.average()
+    val jogosRecomendados = mutableListOf<Jogo>()
 
     override fun recomendar(nota: Int) {
         if (nota < 1 || nota > 10) {

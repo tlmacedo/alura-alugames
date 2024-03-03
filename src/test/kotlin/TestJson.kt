@@ -3,6 +3,7 @@ import br.com.alura.alugames.modelo.PlanoAssinatura
 import br.com.alura.alugames.servicos.ConsumoApi
 import com.google.gson.GsonBuilder
 import java.io.File
+import java.math.BigDecimal
 import java.time.LocalDate
 
 fun main() {
@@ -43,11 +44,12 @@ fun main() {
 //    )
 
     val gamer2 = listaGamers[5]
-    gamer2.plano = PlanoAssinatura("PRATA", 9.90, 3, 0.15)
+    gamer2.plano = PlanoAssinatura("PRATA", 9.90, 3, BigDecimal("0.15"))
     gamer2.alugaJogo(jogo1, periodo1)
     gamer2.alugaJogo(jogo2, periodo2)
     gamer2.alugaJogo(jogo3, periodo3)
     gamer2.alugaJogo(jogo4, periodo3)
+//    println(gamer2)
 //    println(gamer2.jogosAlugados)
 //    println(
 //        "Total do aluguel foi de R$${
@@ -103,8 +105,10 @@ fun main() {
     val serializacao = gson.toJson(gamerCamila.jogosRecomendados)
     println(serializacao)
 
-    val arquivo = File("jogosRecomendados.json")
+    val arquivo = File("jogosRecomendados-${gamer2.nome}.json")
     arquivo.writeText(serializacao)
     println(arquivo.absolutePath)
 
+    println(gamer1)
+    println(gamer2)
 }

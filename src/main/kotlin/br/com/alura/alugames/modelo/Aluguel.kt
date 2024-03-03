@@ -1,6 +1,5 @@
 package br.com.alura.alugames.modelo
 
-import java.math.MathContext
 import java.math.RoundingMode
 
 data class Aluguel(
@@ -11,9 +10,7 @@ data class Aluguel(
     val valorDoAluguel = gamer.plano.obterValor(this)
     override fun toString(): String {
         return "${gamer.nome} alugou: ${jogo.titulo} por ${periodo.emDias} dias na diária de R$${jogo.preco} total de R$${
-            valorDoAluguel.toBigDecimal(
-                MathContext(4, RoundingMode.UP)
-            )
+            valorDoAluguel.setScale(2, RoundingMode.HALF_EVEN)
         }"
     }
 }
