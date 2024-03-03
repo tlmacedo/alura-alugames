@@ -6,21 +6,45 @@ import java.math.RoundingMode
 
 data class Jogo(
     @Expose val titulo: String,
-    @Expose var capa: String,
+    @Expose var capa: String
 ) : Recomendavel {
-    var descricao: String? = null
     var preco = BigDecimal("0.0")
+    var descricao: String? = null
+    var id: Int = 0
     private val listaNotas = mutableListOf<Int>()
 
+    constructor(
+        titulo: String,
+        capa: String,
+        preco: BigDecimal,
+        descricao: String,
+//        id:Int
+    ) : this(titulo, capa) {
+        this.preco = preco
+        this.descricao = descricao
+    }
+
+    val listaNotasValidas = listaNotas.filter {
+        it.toBigDecimal() != null
+    }
+
     override val media: BigDecimal
-        get() = listaNotas.average().toBigDecimal().setScale(2,RoundingMode.HALF_EVEN)
+        get() = if (listaNotasValidas.isNotEmpty()) {
+        listaNotasValidas.average().toBigDecimal().setScale(2, RoundingMode.HALF_EVEN)
+    } else {
+        BigDecimal.ZERO // ou qualquer valor padrão desejado se a lista estiver vazia ou não contiver números válidos
+    }
+
+
+//    override val media: BigDecimal
+//        get() = listaNotas.average().toBigDecimal().setScale(2,RoundingMode.HALF_EVEN)
 
     override fun recomendar(nota: Int) {
         listaNotas.add(nota)
     }
 
     override fun toString(): String {
-        return "\nMeuJogo:" +
+        return "\nMeuJogo[${id}]:" +
                 "\nTitulo: $titulo\tValor: R$${preco}" +
                 "\ncapa: $capa${getMdescricao()}" +
                 "\nReputação: ${media}"

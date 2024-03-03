@@ -40,3 +40,4 @@ out/
 .kotlin
 !/banco_de_dados/
 /banco_de_dados/
+!/banco-de-dados/20240303.sql
