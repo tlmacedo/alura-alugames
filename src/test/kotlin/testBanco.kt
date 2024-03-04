@@ -14,7 +14,7 @@ fun main() {
 
     val jogoDAO = JogosDAO()
 
-    jogoDAO.adicionarJogo(jogo)
+//    jogoDAO.adicionarJogo(jogo)
 
     val listaJogos: List<Jogo> = jogoDAO.getJogos()
     println(listaJogos)

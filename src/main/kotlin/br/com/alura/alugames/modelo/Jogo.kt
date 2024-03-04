@@ -3,14 +3,21 @@ package br.com.alura.alugames.modelo
 import com.google.gson.annotations.Expose
 import java.math.BigDecimal
 import java.math.RoundingMode
+import javax.persistence.*
 
+@Entity
+@Table(name = "jogos")
 data class Jogo(
     @Expose val titulo: String,
     @Expose var capa: String
 ) : Recomendavel {
     var preco = BigDecimal("0.0")
     var descricao: String? = null
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int = 0
+
     private val listaNotas = mutableListOf<Int>()
 
     constructor(
