@@ -9,7 +9,8 @@ fun main() {
         titulo = "The Last of Us Part I",
         capa = "https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/header.jpg?t=1686864554",
         preco = BigDecimal("5.99"),
-        descricao = "Uma aventura pós-apocalíptica de sobrevivência em um mundo infestado por zumbis e facções em conflito."
+        descricao = "Uma aventura pós-apocalíptica de sobrevivência em um mundo infestado por zumbis e facções em conflito.",
+        0
     )
 
     val jogoDAO = JogosDAO()
