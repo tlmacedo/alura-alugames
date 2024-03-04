@@ -103,3 +103,6 @@ fabric.properties
 hs_err_pid*
 replay_pid*
 
+/src/main/resources/META-INF/
+
+!/src/main/resources/META-INF/persistence.xml
