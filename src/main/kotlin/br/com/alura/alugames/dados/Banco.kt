@@ -1,18 +1,14 @@
 package br.com.alura.alugames.dados
 
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
+import javax.persistence.EntityManager
+import javax.persistence.EntityManagerFactory
+import javax.persistence.Persistence
 
 object Banco {
 
-    fun factoryConnection(): Connection? {
-        return try {
-            DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/alugames", "root", "MTlm@4879")
-        } catch (ex: SQLException) {
-            ex.printStackTrace()
-            null
-        }
+    fun getEntityManager(): EntityManager {
+        val factory: EntityManagerFactory = Persistence.createEntityManagerFactory("alugamesPU")
+        return factory.createEntityManager()
     }
 
 }
