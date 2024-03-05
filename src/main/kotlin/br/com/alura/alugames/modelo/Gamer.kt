@@ -9,6 +9,8 @@ data class Gamer(
     var email: String
 ) : Recomendavel {
     var dataNascimento: String? = null
+
+    var id: Int = 0
     var idInterno: String? = null
         private set
 
@@ -49,11 +51,13 @@ data class Gamer(
     constructor(
         nome: String,
         email: String,
-        dataNascimento: String,
-        usuario: String
+        dataNascimento: String?,
+        usuario: String?,
+        id: Int = 0
     ) : this(nome, email) {
         this.dataNascimento = dataNascimento
         this.usuario = usuario
+        this.id = id
         criarIdInterno()
     }
 

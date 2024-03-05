@@ -11,7 +11,7 @@ data class Jogo(
     var preco = BigDecimal("0.0")
     var descricao: String? = null
 
-    var id: Int? = 0
+    var id: Int = 0
 
     private val listaNotas = mutableListOf<Int>()
 
@@ -19,8 +19,8 @@ data class Jogo(
         titulo: String,
         capa: String,
         preco: BigDecimal,
-        descricao: String,
-        id: Int?
+        descricao: String?,
+        id: Int = 0
     ) : this(titulo, capa) {
         this.preco = preco
         this.descricao = descricao
