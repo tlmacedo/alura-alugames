@@ -3,9 +3,9 @@ package br.com.alura.alugames.dados
 import br.com.alura.alugames.modelo.Jogo
 import javax.persistence.EntityManager
 
-class JogosDAO(val manager: EntityManager) {
+class JogosDAO(val manager: EntityManager) : DAO<Jogo>() {
 
-    fun getJogos(): List<Jogo> {
+    override fun getLista(): List<Jogo> {
         val query = manager.createQuery("from JogoEntity ", JogoEntity::class.java)
         return query.resultList.map { entity ->
             Jogo(
@@ -18,7 +18,7 @@ class JogosDAO(val manager: EntityManager) {
         }
     }
 
-    fun adicionarJogo(jogo: Jogo) {
+    override fun adicionar(jogo: Jogo) {
         val entity = JogoEntity(
             titulo = jogo.titulo,
             capa = jogo.capa,
